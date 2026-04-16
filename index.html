@@ -12,9 +12,13 @@
             padding: 0;
             height: 100%;
             overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        /* 1. ANIMATED BACKGROUND IMAGE */
+        /* 1. BACKGROUND WITH KEN BURNS EFFECT */
         .bg-container {
             position: fixed;
             top: 0;
@@ -22,70 +26,82 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: #222; /* Fallback */
             overflow: hidden;
         }
 
         .bg-image {
             width: 100%;
             height: 100%;
-            background-image: url('a.jpg');
+            background-image: url('http://googleusercontent.com/image_collection/image_retrieval/3902478373806311923_0');
             background-size: cover;
             background-position: center;
-            filter: brightness(60%) sepia(20%);
-            /* Slow Zoom Animation */
-            animation: kenburns 20s infinite alternate;
+            filter: brightness(55%) sepia(20%);
+            animation: kenburns 25s infinite alternate ease-in-out;
         }
 
         @keyframes kenburns {
             0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+            100% { transform: scale(1.15); }
         }
 
-        /* 2. THE CARD LAYOUT */
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Montserrat', sans-serif;
-        }
-
+        /* 2. THE MAIN CARD (88% Width for Side Gutter) */
         .main-card {
-            background: rgba(255, 255, 255, 0.92); /* Slightly transparent */
-            backdrop-filter: blur(8px); /* Frosted glass effect */
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
             width: 88%;
             max-width: 380px;
-            border-radius: 30px;
-            padding: 40px 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border-radius: 35px;
+            padding: 45px 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             text-align: center;
             box-sizing: border-box;
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
 
-        /* Components from previous steps */
-        .bismillah { font-size: 20px; margin-bottom: 15px; color: #333; }
-        .label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.7; margin: 12px 0; }
-        .names { font-family: 'Pinyon Script', cursive; font-size: 42px; margin: 10px 0 20px 0; color: #111; }
+        .bismillah { font-size: 22px; margin-bottom: 15px; color: #222; }
+        .label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.6; margin: 15px 0; }
+        .names { font-family: 'Pinyon Script', cursive; font-size: 46px; margin: 10px 0 25px 0; color: #111; }
 
+        /* 3. BOXY DATE SECTION */
         .date-box {
             display: flex;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            margin: 20px 0;
-            background: rgba(255,255,255,0.5);
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            margin: 25px 0;
+            background: #fff;
+            overflow: hidden;
         }
 
-        .date-side { flex: 1; padding: 10px; font-size: 9px; display: flex; align-items: center; justify-content: center; line-height: 1.4; text-transform: uppercase; }
-        .date-number { flex: 0.7; font-size: 38px; font-family: 'Playfair Display', serif; color: #5b7a5d; border-left: 1px solid #ddd; border-right: 1px solid #ddd; padding: 5px 0; }
+        .date-side { flex: 1; padding: 12px 5px; font-size: 9px; display: flex; align-items: center; justify-content: center; line-height: 1.5; text-transform: uppercase; }
+        .date-number { flex: 0.7; font-size: 42px; font-family: 'Playfair Display', serif; color: #5b7a5d; border-left: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; padding: 8px 0; background: #fafafa; }
 
-        .timer-row { display: flex; gap: 8px; margin-top: 15px; }
-        .t-box { background: white; padding: 12px 5px; border-radius: 10px; flex: 1; border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .t-box b { font-size: 18px; display: block; }
-        .t-box span { font-size: 7px; text-transform: uppercase; opacity: 0.5; }
+        /* 4. THE LOCATION SECTION (Fixed Icon & Green Color) */
+        .venue {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
 
-        .venue { margin-top: 25px; font-size: 11px; line-height: 1.5; }
+        .location-pin {
+            animation: pinBounce 2s infinite ease-in-out;
+        }
+
+        .venue-details { font-size: 11px; line-height: 1.6; }
+        .venue-details strong { color: #5b7a5d; letter-spacing: 1px; font-size: 13px; }
+
+        @keyframes pinBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* 5. BOXY TIMER */
+        .timer-row { display: flex; gap: 10px; margin-top: 20px; }
+        .t-box { background: white; padding: 15px 0; border-radius: 15px; flex: 1; border: 1px solid #f0f0f0; box-shadow: 0 5px 15px rgba(0,0,0,0.04); }
+        .t-box b { font-size: 20px; display: block; color: #333; }
+        .t-box span { font-size: 8px; text-transform: uppercase; opacity: 0.5; letter-spacing: 1px; }
+
     </style>
 </head>
 <body>
@@ -97,8 +113,10 @@
     <div class="main-card">
         <div class="bismillah">بسم الله الرحمن الرحيم</div>
         <div class="label">Wedding Invitation</div>
+        
         <div class="names">Rushaid & Famnu</div>
-        <div class="label">Save the Date</div>
+        
+        <div class="label">Request the honor of your presence</div>
 
         <div class="date-box">
             <div class="date-side">APRIL<br>2026,<br>SATURDAY</div>
@@ -106,12 +124,22 @@
             <div class="date-side">11:00 AM<br>TO 03:00<br>PM</div>
         </div>
 
+        <div class="label" style="font-size: 11px;">26 SHAWWAL 1447</div>
+
         <div class="venue">
-            <strong>📍 SNEHATHEERAM CENTRE</strong><br>
-            <span style="opacity: 0.7;">AMBALAKKANDI, OMASSERY</span>
+            <div class="location-pin">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b7a5d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+            </div>
+            <div class="venue-details">
+                <strong>SNEHATHEERAM CENTRE</strong><br>
+                <span style="opacity: 0.7;">AMBALAKKANDI, OMASSERY</span>
+            </div>
         </div>
 
-        <div class="label" style="margin-top: 35px;">Countdown</div>
+        <div class="label" style="margin-top: 45px;">Countdown to Reception</div>
 
         <div class="timer-row">
             <div class="t-box"><b>08</b><span>Days</span></div>
