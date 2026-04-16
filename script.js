@@ -1,56 +1,36 @@
-// A. WAIT FOR ASSETS TO LOAD
-window.onload = function() {
-    
-    // Initialize Lucide Icons
-    lucide.createIcons();
+<script>
+    // 1. SET TARGET DATE: April 25, 2026, at 11:00 AM
+    // Using the Date.parse or new Date() format
+    const weddingDate = new Date("April 25, 2026 11:00:00").getTime();
 
-    // B. GSAP ENTRANCE ANIMATION (The "Pop-In" Effect)
-    const tl = gsap.timeline();
+    // 2. UPDATE FUNCTION: Runs every 1000ms (1 second)
+    const timerInterval = setInterval(function() {
+        
+        // Get current timestamp
+        const now = new Date().getTime();
+        
+        // Calculate the difference (Delta T)
+        const distance = weddingDate - now;
 
-    // Fade out loader
-    tl.to("#loader", { 
-        opacity: 0, 
-        duration: 0.6, 
-        onComplete: () => document.getElementById("loader").style.display = "none" 
-    });
+        // 3. TIME CONVERSIONS
+        // Math.floor handles the rounding to integers
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Animate Card (Slides up and fades in)
-    tl.fromTo("#mainCard", 
-        { opacity: 0, y: 50, scale: 0.95 }, 
-        { opacity: 1, y: 0, scale: 1, duration: 1, ease: "back.out(1.7)" }
-    );
+        // 4. DISPLAY THE DATA
+        // .padStart(2, '0') ensures "8" becomes "08" for that boxy look
+        document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+        document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById("mins").innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById("secs").innerHTML = seconds.toString().padStart(2, '0');
 
-    // Continuous Subtle Floating Animation
-    gsap.to("#mainCard", {
-        y: -8,
-        duration: 2.5,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-};
-
-// C. THE COUNTDOWN LOGIC
-const targetTime = new Date("April 25, 2026 11:00:00").getTime();
-
-const updateTimer = () => {
-    const now = new Date().getTime();
-    const distance = targetTime - now;
-
-    if (distance < 0) return; // Stop if date passed
-
-    // Calculation
-    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // UI Update with Padding (e.g. 05 instead of 5)
-    document.getElementById("days").innerHTML = d.toString().padStart(2, '0');
-    document.getElementById("hours").innerHTML = h.toString().padStart(2, '0');
-    document.getElementById("mins").innerHTML = m.toString().padStart(2, '0');
-    document.getElementById("secs").innerHTML = s.toString().padStart(2, '0');
-};
-
-// Run timer every second
-setInterval(updateTimer, 1000);
+        // 5. EXPIRATION LOGIC
+        if (distance < 0) {
+            clearInterval(timerInterval);
+            document.querySelector(".timer-container").innerHTML = "<h3>The Wedding Ceremony is Underway!</h3>";
+        }
+        
+    }, 1000);
+</script>
