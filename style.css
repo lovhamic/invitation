@@ -6,57 +6,63 @@
 }
 
 body {
-    background-color: #ebebeb; /* The darker outer background */
-    font-family: 'Montserrat', sans-serif;
-    color: #4a4a4a;
+    background-color: #ebebeb; /* Darker outer area to create contrast */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 40px 0; /* Vertical space for scrolling */
+    padding: 40px 0; /* Vertical breathing room */
+    font-family: 'Montserrat', sans-serif;
 }
 
-/* 2. THE MAIN CARD (With Side Spacing) */
+/* 2. THE MAIN CARD (With Side Gutters) */
 .main-card {
-    background-color: white;
-    width: 90%;          /* THE KEY: Leaves 5% space on left and right */
-    max-width: 420px;    /* Prevents it from getting too wide on PC */
-    border-radius: 35px; /* Smooth rounded corners */
-    padding: 60px 25px;  /* Internal breathing room */
-    box-shadow: 0 15px 45px rgba(0,0,0,0.07);
-    text-align: center;
     position: relative;
-    overflow: hidden;
+    background-color: white;
+    
+    /* BACKGROUND IMAGE INTEGRATION */
+    background-image: url('a.jpg');
+    background-size: cover;
+    background-position: center;
+    
+    width: 90%;          /* Creates the left/right space you requested */
+    max-width: 420px;    /* Prevents it from getting too wide on desktop */
+    border-radius: 35px; /* Smooth rounded corners from your screenshot */
+    padding: 60px 25px;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.08); /* Soft depth */
+    text-align: center;
+    overflow: hidden;    /* Keeps background image inside the rounded corners */
 }
 
-/* 3. TYPOGRAPHY & TEXT SPACING */
+/* 3. TYPOGRAPHY & SPACING */
 .bismillah {
     font-size: 26px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     color: #333;
+}
+
+.names {
+    font-family: 'Pinyon Script', cursive; /* Original script font */
+    font-size: 52px;
+    color: #2c2c2c;
+    margin: 15px 0 35px 0;
 }
 
 .label-text {
     font-size: 10px;
     letter-spacing: 2.5px; /* Elegant wide spacing */
     text-transform: uppercase;
-    color: #999;
+    color: #777;
     margin: 15px 0;
 }
 
-.names {
-    font-family: 'Pinyon Script', cursive;
-    font-size: 52px;
-    color: #2c2c2c;
-    margin: 20px 0 40px 0;
-}
-
-/* 4. BOXY DATE TEMPLATE */
+/* 4. THE BOXY DATE COMPONENT */
 .date-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    border: 1px solid #eeeeee;
+    /* Glass effect: lets a.jpg show through while keeping text readable */
+    background: rgba(255, 255, 255, 0.85); 
+    border: 1px solid #e0e0e0;
     border-radius: 15px;
     margin: 35px 0;
     width: 100%;
@@ -69,40 +75,60 @@ body {
     letter-spacing: 1.2px;
     line-height: 1.7;
     text-transform: uppercase;
-    color: #888;
+    color: #666;
 }
 
 .date-center {
     flex: 0.8;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif; /* Serif font for numbers */
     font-size: 45px;
     color: #5b7a5d; /* Dark Sage Green */
-    border-left: 1px solid #eeeeee;
-    border-right: 1px solid #eeeeee;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
     padding: 10px 0;
-    background-color: #fcfcfc;
 }
 
-/* 5. BOXY TIMER SECTION */
+/* 5. LOCATION SECTION (Centered Icon) */
+.location-section {
+    margin: 40px 0;
+}
+
+.pin {
+    font-size: 22px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.venue-name {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    color: #333;
+}
+
+/* 6. THE BOXY TIMER BOXES */
 .timer-container {
     display: flex;
-    gap: 12px; /* Gap between the four boxes */
+    gap: 12px;
     justify-content: center;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .timer-box {
     flex: 1;
-    background: #ffffff;
-    padding: 18px 5px;
-    border-radius: 18px;
-    /* Soft shadow + subtle inner stroke for depth */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.04), inset 0 0 0 1px #f2f2f2;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px 5px;
+    border-radius: 15px;
+    /* Inset shadow gives it that 'pressed-in' look from the screenshot */
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
 }
 
-.timer-box .number {
+.timer-box .num {
     display: block;
-    font-size: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
     font-weight: 600;
     color: #333;
 }
@@ -111,35 +137,7 @@ body {
     font-size: 8px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #bbb;
-    margin-top: 6px;
+    color: #999;
+    margin-top: 5px;
     display: block;
-}
-
-/* 6. VENUE & DETAILS */
-.venue-section {
-    margin-top: 40px;
-}
-
-.venue-name {
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1px;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.venue-address {
-    font-size: 11px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    opacity: 0.6;
-}
-
-/* 7. HIJRI DATE STYLE */
-.hijri {
-    font-size: 12px;
-    letter-spacing: 2px;
-    margin: 25px 0;
-    opacity: 0.7;
 }
