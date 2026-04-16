@@ -3,62 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@1,600&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <title>Wedding Invitation - Rushaid & Famnu</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@600&family=Pinyon+Script&display=swap" rel="stylesheet">
     
     <style>
-        /* 1. LAYOUT & SPACING */
+        /* 1. LAYOUT & GUTTERS */
         body {
-            background-color: #f4f4f4; /* Subtle grey background */
+            background-color: #ebebeb; /* Outside background */
             margin: 0;
-            padding: 40px 0; /* Space at top and bottom of screen */
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 0;
             font-family: 'Montserrat', sans-serif;
-            color: #4a4a4a;
         }
 
         .main-card {
+            /* BACKGROUND IMAGE FEATURE */
+            background-image: url('a.jpg');
+            background-size: cover;
+            background-position: center;
+            
+            position: relative;
+            width: 90%;          /* Side spacing (Gutter) */
+            max-width: 420px;    /* Mobile-friendly width */
             background-color: white;
-            width: 90%;          /* Creates the left/right "Gutter" space */
-            max-width: 400px;    /* Keeps it perfectly shaped on mobile/web */
-            border-radius: 35px; /* Smooth rounded corners from screenshot */
-            padding: 50px 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            border-radius: 35px;
+            padding: 60px 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             text-align: center;
+            overflow: hidden;
         }
 
-        /* 2. TYPOGRAPHY */
+        /* 2. TYPOGRAPHY & ICONS */
         .bismillah {
-            font-size: 24px;
-            margin-bottom: 25px;
-            opacity: 0.8;
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #333;
         }
 
-        .sub-header {
+        .label-text {
             font-size: 10px;
             letter-spacing: 2.5px;
             text-transform: uppercase;
-            margin-bottom: 15px;
-            opacity: 0.6;
+            color: #777;
+            margin: 15px 0;
         }
 
         .names {
             font-family: 'Pinyon Script', cursive;
-            font-size: 48px;
-            margin: 10px 0 30px 0;
-            color: #333;
+            font-size: 52px;
+            color: #2c2c2c;
+            margin: 15px 0 35px 0;
         }
 
         /* 3. BOXY DATE TEMPLATE */
         .date-container {
             display: flex;
-            justify-content: center;
             align-items: center;
-            border: 1px solid #e0e0e0;
+            background: rgba(255, 255, 255, 0.85); /* Glass effect for background visibility */
+            border: 1px solid #ddd;
             border-radius: 15px;
-            margin: 30px auto;
-            overflow: hidden;
+            margin: 35px 0;
             width: 100%;
         }
 
@@ -67,75 +75,84 @@
             padding: 15px 5px;
             font-size: 10px;
             letter-spacing: 1.2px;
-            line-height: 1.6;
+            line-height: 1.7;
             text-transform: uppercase;
+            color: #666;
         }
 
         .date-center {
             flex: 0.8;
-            font-size: 45px;
             font-family: 'Playfair Display', serif;
-            color: #5b7a5d; /* Dark Sage Green from screenshot */
-            border-left: 1px solid #e0e0e0;
-            border-right: 1px solid #e0e0e0;
+            font-size: 45px;
+            color: #5b7a5d; /* Sage Green */
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
             padding: 10px 0;
-            background: #fdfdfd;
         }
 
-        /* 4. BOXY TIMER */
-        .timer-container {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 20px;
+        /* 4. LOCATION FEATURE */
+        .location-section {
+            margin: 40px 0;
         }
 
-        .timer-box {
-            background: white;
-            padding: 15px 5px;
-            border-radius: 15px;
-            flex: 1;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04), inset 0 0 0 1px #eee;
-        }
-
-        .timer-box .num {
+        .pin {
             font-size: 22px;
-            font-weight: 600;
+            margin-bottom: 10px;
             display: block;
-        }
-
-        .timer-box .label {
-            font-size: 8px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            opacity: 0.5;
-            margin-top: 5px;
-        }
-
-        .venue-info {
-            margin-top: 40px;
-            font-size: 12px;
-            letter-spacing: 1px;
         }
 
         .venue-name {
             font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 5px;
+        }
+
+        /* 5. BOXY TIMER */
+        .timer-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .timer-box {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 5px;
+            border-radius: 15px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .timer-box .num {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .timer-box .unit {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-top: 5px;
+            display: block;
         }
     </style>
 </head>
 <body>
 
     <div class="main-card">
-        <div class="bismillah">بسم الله الرحمن الرحيم</div>
+        <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
         
-        <div class="sub-header">You are invited to the wedding of</div>
+        <div class="label-text">You are invited to the wedding of</div>
         
         <div class="names">Rushaid & Famnu</div>
         
-        <div class="sub-header">Request the honor of your presence</div>
+        <div class="label-text" style="font-size: 9px;">Request the honor of your presence</div>
 
         <div class="date-container">
             <div class="date-side">
@@ -147,34 +164,62 @@
             </div>
         </div>
 
-        <div class="sub-header" style="font-size: 11px;">26 SHAWWAL 1447</div>
+        <div class="label-text" style="color: #444; font-weight: 600;">26 SHAWWAL 1447</div>
 
-        <div class="venue-info">
-            <span class="venue-name">📍 SNEHATHEERAM CENTRE</span>
-            <span style="opacity: 0.6;">AMBALAKKANDI, OMASSERY</span>
+        <div class="location-section">
+            <span class="pin">📍</span>
+            <span class="venue-name">Snehatheeram Centre</span>
+            <span class="label-text" style="margin:0; font-size: 11px;">Ambalakkandi, Omassery</span>
         </div>
 
-        <div class="sub-header" style="margin-top: 50px;">Countdown to Reception</div>
+        <div class="label-text" style="margin-top: 50px;">Countdown to Reception</div>
 
         <div class="timer-container">
             <div class="timer-box">
-                <span class="num">08</span>
-                <span class="label">Days</span>
+                <span class="num" id="days">00</span>
+                <span class="unit">Days</span>
             </div>
             <div class="timer-box">
-                <span class="num">20</span>
-                <span class="label">Hours</span>
+                <span class="num" id="hours">00</span>
+                <span class="unit">Hours</span>
             </div>
             <div class="timer-box">
-                <span class="num">19</span>
-                <span class="label">Mins</span>
+                <span class="num" id="mins">00</span>
+                <span class="unit">Mins</span>
             </div>
             <div class="timer-box">
-                <span class="num">26</span>
-                <span class="label">Secs</span>
+                <span class="num" id="secs">00</span>
+                <span class="unit">Secs</span>
             </div>
         </div>
     </div>
 
+    <script>
+        // TARGET DATE: April 25, 2026 at 11:00 AM
+        const targetDate = new Date("April 25, 2026 11:00:00").getTime();
+
+        const updateTimer = setInterval(function() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            // Time math
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // Update HTML
+            document.getElementById("days").innerText = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = h.toString().padStart(2, '0');
+            document.getElementById("mins").innerText = m.toString().padStart(2, '0');
+            document.getElementById("secs").innerText = s.toString().padStart(2, '0');
+
+            // If time is up
+            if (diff < 0) {
+                clearInterval(updateTimer);
+                document.querySelector(".timer-container").innerHTML = "Wedding Started";
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
