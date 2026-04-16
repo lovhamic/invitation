@@ -32,7 +32,7 @@
         .bg-image {
             width: 100%;
             height: 100%;
-            background-image: url('a.jpg');
+            background-image: url('a.jpg'); /* Ensure this file is in your folder */
             background-size: cover;
             background-position: center;
             filter: brightness(55%) sepia(20%);
@@ -44,7 +44,7 @@
             100% { transform: scale(1.15); }
         }
 
-        /* 2. THE MAIN CARD (88% Width for Side Gutter) */
+        /* 2. THE MAIN CARD */
         .main-card {
             background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(10px);
@@ -75,18 +75,25 @@
         .date-side { flex: 1; padding: 12px 5px; font-size: 9px; display: flex; align-items: center; justify-content: center; line-height: 1.5; text-transform: uppercase; }
         .date-number { flex: 0.7; font-size: 42px; font-family: 'Playfair Display', serif; color: #5b7a5d; border-left: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; padding: 8px 0; background: #fafafa; }
 
-        /* 4. THE LOCATION SECTION (Fixed Icon & Green Color) */
-        .venue {
+        /* 4. CLICKABLE LOCATION SECTION */
+        .venue-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
             margin-top: 30px;
+            transition: transform 0.2s ease;
+        }
+
+        .venue-link:active { transform: scale(0.96); }
+
+        .venue {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
         }
 
-        .location-pin {
-            animation: pinBounce 2s infinite ease-in-out;
-        }
+        .location-pin { animation: pinBounce 2s infinite ease-in-out; }
 
         .venue-details { font-size: 11px; line-height: 1.6; }
         .venue-details strong { color: #5b7a5d; letter-spacing: 1px; font-size: 13px; }
@@ -126,28 +133,55 @@
 
         <div class="label" style="font-size: 11px;">26 SHAWWAL 1447</div>
 
-        <div class="venue">
-            <div class="location-pin">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b7a5d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
+        <a href="https://www.google.com/maps/search/?api=1&query=Snehatheeram+Convention+Centre+Ambalakkandi+Omassery" target="_blank" class="venue-link">
+            <div class="venue">
+                <div class="location-pin">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b7a5d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                </div>
+                <div class="venue-details">
+                    <strong>SNEHATHEERAM CENTRE</strong><br>
+                    <span style="opacity: 0.7;">AMBALAKKANDI, OMASSERY</span>
+                </div>
             </div>
-            <div class="venue-details">
-                <strong>SNEHATHEERAM CENTRE</strong><br>
-                <span style="opacity: 0.7;">AMBALAKKANDI, OMASSERY</span>
-            </div>
-        </div>
+        </a>
 
         <div class="label" style="margin-top: 45px;">Countdown to Reception</div>
 
         <div class="timer-row">
-            <div class="t-box"><b>08</b><span>Days</span></div>
-            <div class="t-box"><b>20</b><span>Hours</span></div>
-            <div class="t-box"><b>14</b><span>Mins</span></div>
-            <div class="t-box"><b>29</b><span>Secs</span></div>
+            <div class="t-box"><b id="days">00</b><span>Days</span></div>
+            <div class="t-box"><b id="hours">00</b><span>Hours</span></div>
+            <div class="t-box"><b id="mins">00</b><span>Mins</span></div>
+            <div class="t-box"><b id="secs">00</b><span>Secs</span></div>
         </div>
     </div>
+
+    <script>
+        // Set the wedding date
+        const weddingDate = new Date("April 25, 2026 11:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = d.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = h.toString().padStart(2, '0');
+            document.getElementById("mins").innerHTML = m.toString().padStart(2, '0');
+            document.getElementById("secs").innerHTML = s.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".timer-row").innerHTML = "<b>The Wedding is Today!</b>";
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
