@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Great+Vibes&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- LOADING PAGE STYLES --- */
+        #loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 1s ease; /* Smoother fade out */
+        }
+
+        .loader-circle {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #5b7a5d;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            margin-top: 15px;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        /* --- YOUR ORIGINAL STYLES --- */
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url('a.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .invitation-card {
+            background: rgba(255, 255, 255, 0.88); 
+            backdrop-filter: blur(10px); 
+            width: 90%;
+            max-width: 440px;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            /* Add this for a smooth entrance */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1.2s ease;
+        }
+
+        /* Class to trigger the entrance animation */
+        .card-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bismillah { font-size: 26px; margin-bottom: 25px; color: #333; }
+        .names { font-family: 'Great Vibes', cursive; font-size: 50px; color: #4a4a4a; margin: 15px 0; }
+
+        .date-box-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 35px auto;
+            background: #ffffff;
+            border: 1px solid #d1cfca;
+            border-radius: 12px;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .side-text {
+            padding: 15px 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            line-height: 1.8;
+            color: #777;
+        }
+
+        .big-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 55px;
+            color: #5b7a5d; 
+            padding: 5px 25px;
+            font-weight: 600;
+            border-left: 1px solid #e2e0db;
+            border-right: 1px solid #e2e0db;
+            background: linear-gradient(to bottom, #ffffff, #f9f9f9);
+        }
+
+        .timer-row { display: flex; gap: 12px; justify-content: center; margin-top: 20px; }
+        .timer-box {
+            background: #ffffff;
+            width: 72px;
+            padding: 14px 0;
+            border-radius: 10px;
+            border: 1px solid #e0ddd7;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .t-num { display: block; font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 600; color: #333; }
+        .t-unit { display: block; font-size: 8px; letter-spacing: 2px; margin-top: 5px; color: #999; }
+        .venue { margin: 30px 0; text-transform: uppercase; line-height: 1.6; }
+        .venue-link { text-decoration: none; color: inherit; display: inline-block; }
+        .venue-name { font-size: 13px; letter-spacing: 2px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .location-icon { fill: #5b7a5d; width: 16px; height: 16px; }
+        .hijri { font-size: 11px; letter-spacing: 4px; margin: 15px 0; color: #888; }
+    </style>
+</head>
+<body>
+
+    <div id="loader-wrapper">
+        <div class="loader-circle"></div>
+        <div class="loader-text">Loading Invitation</div>
+    </div>
+
+    <div class="invitation-card" id="invitationCard">
+        <div class="bismillah">بسم الله الرحمن الرحيم</div>
+        
+        <p style="letter-spacing: 3px; font-size: 11px; color: #888;">YOU ARE INVITED TO THE WEDDING OF</p>
+        
+        <div class="names">Rushaid  &  Famnu</div>
+
+        <p style="letter-spacing: 2px; font-size: 10px; margin-top: 30px; color: #999;">REQUEST THE HONOR OF YOUR PRESENCE</p>
+
+        <div class="date-box-wrapper">
+            <div class="side-text">
+                <strong>APRIL</strong><br>
+                2026, SATURDAY
+            </div>
+            <div class="big-number">25</div>
+            <div class="side-text">
+                <strong>11:00 AM</strong><br>
+                TO 03:00 PM
+            </div>
+        </div>
+
+        <div class="hijri">26 SHAWWAL 1447</div>
+
+        <div class="venue">
+            <a href="https://maps.app.goo.gl/YourActualGoogleMapsLinkHere" target="_blank" class="venue-link">
+                <div class="venue-name">
+                    <svg class="location-icon" viewBox="0 0 24 24">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    SNEHATHEERAM CENTRE
+                </div>
+                <div style="font-size: 10px; font-weight: 400; color: #777; margin-top: 4px;">Ambalakkandi, Omassery</div>
+            </a>
+        </div>
+
+        <hr style="width: 40px; border: 0; border-top: 1px solid #eee; margin: 30px auto;">
+
+        <p style="font-size: 9px; letter-spacing: 3px; margin-bottom: 15px; font-weight: 600; color: #aaa;">COUNTDOWN TO RECEPTION</p>
+        
+        <div class="timer-row">
+            <div class="timer-box">
+                <span class="t-num" id="days">00</span>
+                <span class="t-unit">DAYS</span>
+            </div>
+            <div class="timer-box">
+                <span class="t-num" id="hours">00</span>
+                <span class="t-unit">HOURS</span>
+            </div>
+            <div class="timer-box">
+                <span class="t-num" id="mins">00</span>
+                <span class="t-unit">MINS</span>
+            </div>
+            <div class="timer-box">
+                <span class="t-num" id="secs">00</span>
+                <span class="t-unit">SECS</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Force Loader to stay for at least 2.5 seconds
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader-wrapper');
+            const card = document.getElementById('invitationCard');
+            
+            // This ensures it stays visible for 2500ms even if it loads faster
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                
+                // Show the card with a smooth slide-up effect
+                card.classList.add('card-visible');
+
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 1000);
+            }, 2500); 
+        });
+
+        // 2. Countdown logic
+        const targetDate = new Date("April 25, 2026 11:00:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }, 1000);
+    </script>
+</body>
+</html>
