@@ -1,103 +1,56 @@
-/* GLOBAL STYLES */
-body {
-    margin: 0;
-    padding: 20px 0; /* Ensures space at the top/bottom for the background to show */
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Uses your specific background image 'a.jpg' */
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
-                url('a.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
-}
-
-/* THE INVITATION CARD (Glassmorphism & Mobile Visibility) */
-.invitation-card {
-    background: rgba(255, 255, 255, 0.88); /* Semi-transparent white */
-    backdrop-filter: blur(10px); /* Frosted glass effect */
-    /* Adjusted width to 85% to ensure background is visible on sides */
-    width: 85%; 
-    max-width: 400px; 
-    padding: 60px 20px;
-    text-align: center;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+// A. WAIT FOR ASSETS TO LOAD
+window.onload = function() {
     
-    /* Animation initial state */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 1.2s ease;
-}
+    // Initialize Lucide Icons
+    lucide.createIcons();
 
-/* Entrance animation trigger */
-.card-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+    // B. GSAP ENTRANCE ANIMATION (The "Pop-In" Effect)
+    const tl = gsap.timeline();
 
-/* THE BOXY DATE WRAPPER (Raised Effect) */
-.date-box-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #ffffff;
-    border: 1px solid #d1cfca;
-    border-radius: 12px;
-    margin: 35px auto;
-    width: fit-content;
-    /* Realistic shadow for 3D depth */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
+    // Fade out loader
+    tl.to("#loader", { 
+        opacity: 0, 
+        duration: 0.6, 
+        onComplete: () => document.getElementById("loader").style.display = "none" 
+    });
 
-.big-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 55px;
-    font-weight: 600;
-    color: #5b7a5d; /* Your specific Sage Green */
-    padding: 5px 25px;
-    border-left: 1px solid #e2e0db;
-    border-right: 1px solid #e2e0db;
-    background: linear-gradient(to bottom, #ffffff, #f9f9f9);
-}
+    // Animate Card (Slides up and fades in)
+    tl.fromTo("#mainCard", 
+        { opacity: 0, y: 50, scale: 0.95 }, 
+        { opacity: 1, y: 0, scale: 1, duration: 1, ease: "back.out(1.7)" }
+    );
 
-/* THE BOXY TIMER (Sunken Effect) */
-.timer-row {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 20px;
-}
+    // Continuous Subtle Floating Animation
+    gsap.to("#mainCard", {
+        y: -8,
+        duration: 2.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+    });
+};
 
-.timer-box {
-    background: #ffffff;
-    width: 72px;
-    padding: 14px 0;
-    border-radius: 10px;
-    border: 1px solid #e0ddd7;
-    /* Inset shadow for realistic "pressed" look */
-    box-shadow: 
-        inset 0 1px 3px rgba(0,0,0,0.02),
-        0 4px 8px rgba(0,0,0,0.05);
-}
+// C. THE COUNTDOWN LOGIC
+const targetTime = new Date("April 25, 2026 11:00:00").getTime();
 
-/* BUTTON & INTERACTIVE ELEMENTS */
-.venue-link {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-    transition: transform 0.2s ease;
-}
+const updateTimer = () => {
+    const now = new Date().getTime();
+    const distance = targetTime - now;
 
-.venue-link:active {
-    transform: scale(0.98);
-}
+    if (distance < 0) return; // Stop if date passed
 
-.location-icon {
-    fill: #5b7a5d; /* Matches Sage Green theme */
-    width: 16px;
-    height: 16px;
-}
+    // Calculation
+    const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const s = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // UI Update with Padding (e.g. 05 instead of 5)
+    document.getElementById("days").innerHTML = d.toString().padStart(2, '0');
+    document.getElementById("hours").innerHTML = h.toString().padStart(2, '0');
+    document.getElementById("mins").innerHTML = m.toString().padStart(2, '0');
+    document.getElementById("secs").innerHTML = s.toString().padStart(2, '0');
+};
+
+// Run timer every second
+setInterval(updateTimer, 1000);
