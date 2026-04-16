@@ -1,143 +1,96 @@
-/* 1. RESET & BASE SETUP */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    background-color: #ebebeb; /* Darker outer area to create contrast */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 40px 0; /* Vertical breathing room */
-    font-family: 'Montserrat', sans-serif;
-}
+    body {
+        background-color: #ebebeb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 40px 0;
+        font-family: 'Montserrat', sans-serif;
+    }
 
-/* 2. THE MAIN CARD (With Side Gutters) */
-.main-card {
-    position: relative;
-    background-color: white;
-    
-    /* BACKGROUND IMAGE INTEGRATION */
-    background-image: url('a.jpg');
-    background-size: cover;
-    background-position: center;
-    
-    width: 90%;          /* Creates the left/right space you requested */
-    max-width: 420px;    /* Prevents it from getting too wide on desktop */
-    border-radius: 35px; /* Smooth rounded corners from your screenshot */
-    padding: 60px 25px;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.08); /* Soft depth */
-    text-align: center;
-    overflow: hidden;    /* Keeps background image inside the rounded corners */
-}
+    .main-card {
+        position: relative;
+        width: 90%;          /* Side Gutters */
+        max-width: 420px;
+        background-color: white;
+        border-radius: 35px;
+        padding: 60px 25px;
+        text-align: center;
+        overflow: hidden;
+        box-shadow: 0 15px 45px rgba(0,0,0,0.06);
 
-/* 3. TYPOGRAPHY & SPACING */
-.bismillah {
-    font-size: 26px;
-    margin-bottom: 25px;
-    color: #333;
-}
+        /* BACKGROUND OPACITY FIX */
+        background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('a.jpg');
+        background-size: cover;
+        background-position: center;
+    }
 
-.names {
-    font-family: 'Pinyon Script', cursive; /* Original script font */
-    font-size: 52px;
-    color: #2c2c2c;
-    margin: 15px 0 35px 0;
-}
+    .bismillah { font-size: 26px; margin-bottom: 20px; color: #333; }
 
-.label-text {
-    font-size: 10px;
-    letter-spacing: 2.5px; /* Elegant wide spacing */
-    text-transform: uppercase;
-    color: #777;
-    margin: 15px 0;
-}
+    .names {
+        font-family: 'Pinyon Script', cursive;
+        font-size: 52px;
+        color: #2c2c2c;
+        margin: 15px 0 35px 0;
+    }
 
-/* 4. THE BOXY DATE COMPONENT */
-.date-container {
-    display: flex;
-    align-items: center;
-    /* Glass effect: lets a.jpg show through while keeping text readable */
-    background: rgba(255, 255, 255, 0.85); 
-    border: 1px solid #e0e0e0;
-    border-radius: 15px;
-    margin: 35px 0;
-    width: 100%;
-}
+    .label-text {
+        font-size: 10px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #888;
+    }
 
-.date-side {
-    flex: 1;
-    padding: 15px 5px;
-    font-size: 10px;
-    letter-spacing: 1.2px;
-    line-height: 1.7;
-    text-transform: uppercase;
-    color: #666;
-}
+    /* DATE BOXES */
+    .date-container {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid #e0e0e0;
+        border-radius: 15px;
+        margin: 35px 0;
+    }
 
-.date-center {
-    flex: 0.8;
-    font-family: 'Playfair Display', serif; /* Serif font for numbers */
-    font-size: 45px;
-    color: #5b7a5d; /* Dark Sage Green */
-    border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;
-    padding: 10px 0;
-}
+    .date-side { flex: 1; padding: 15px 5px; font-size: 10px; line-height: 1.7; letter-spacing: 1.2px; }
 
-/* 5. LOCATION SECTION (Centered Icon) */
-.location-section {
-    margin: 40px 0;
-}
+    .date-center {
+        flex: 0.8;
+        font-family: 'Playfair Display', serif;
+        font-size: 45px;
+        color: #5b7a5d; /* Sage Green */
+        border-left: 1px solid #e0e0e0;
+        border-right: 1px solid #e0e0e0;
+        padding: 10px 0;
+    }
 
-.pin {
-    font-size: 22px;
-    margin-bottom: 8px;
-    display: block;
-}
+    /* LOCATION FEATURE */
+    .location-section { margin: 35px 0; display: flex; flex-direction: column; align-items: center; }
 
-.venue-name {
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    display: block;
-    color: #333;
-}
+    .location-logo {
+        color: #5b7a5d;
+        font-size: 32px !important;
+        margin-bottom: 8px;
+    }
 
-/* 6. THE BOXY TIMER BOXES */
-.timer-container {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-top: 30px;
-}
+    .venue-name { font-weight: 700; font-size: 14px; letter-spacing: 1.5px; text-transform: uppercase; }
 
-.timer-box {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 15px 5px;
-    border-radius: 15px;
-    /* Inset shadow gives it that 'pressed-in' look from the screenshot */
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
-}
+    .venue-address { font-size: 11px; opacity: 0.6; text-transform: uppercase; margin-top: 4px; }
 
-.timer-box .num {
-    display: block;
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: #333;
-}
+    /* TIMER BOXES */
+    .timer-container { display: flex; gap: 12px; justify-content: center; }
 
-.timer-box .unit {
-    font-size: 8px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #999;
-    margin-top: 5px;
-    display: block;
-}
+    .timer-box {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 15px 5px;
+        border-radius: 15px;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.03), 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .num { display: block; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; }
+
+    .unit { font-size: 8px; text-transform: uppercase; letter-spacing: 1px; color: #999; }
+</style>
