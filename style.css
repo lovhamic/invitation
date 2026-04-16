@@ -1,55 +1,145 @@
-/* GLOBAL STYLES */
-body {
+/* 1. RESET & BASE SETUP */
+* {
+    box-sizing: border-box;
     margin: 0;
-    padding: 80px 0; 
-    min-height: 100vh;
+    padding: 0;
+}
+
+body {
+    background-color: #ebebeb; /* The darker outer background */
+    font-family: 'Montserrat', sans-serif;
+    color: #4a4a4a;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgba(0,0,0,0.15), rgba(0,0,0,0.15)), 
-                url('a.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
+    min-height: 100vh;
+    padding: 40px 0; /* Vertical space for scrolling */
 }
 
-/* THE INVITATION CARD - Set to 30% width and 60% opacity */
-.invitation-card {
-    /* This line controls the 60% transparency */
-    background: rgba(255, 255, 255, 0.6); 
-    backdrop-filter: blur(12px); 
-    width: 30%; 
-    min-width: 250px; 
-    max-width: 300px;
-    padding: 30px 10px;
+/* 2. THE MAIN CARD (With Side Spacing) */
+.main-card {
+    background-color: white;
+    width: 90%;          /* THE KEY: Leaves 5% space on left and right */
+    max-width: 420px;    /* Prevents it from getting too wide on PC */
+    border-radius: 35px; /* Smooth rounded corners */
+    padding: 60px 25px;  /* Internal breathing room */
+    box-shadow: 0 15px 45px rgba(0,0,0,0.07);
     text-align: center;
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-    
-    /* Animation initial state */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 1.2s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-/* SCALING INTERNAL ELEMENTS */
-.big-number {
+/* 3. TYPOGRAPHY & TEXT SPACING */
+.bismillah {
+    font-size: 26px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.label-text {
+    font-size: 10px;
+    letter-spacing: 2.5px; /* Elegant wide spacing */
+    text-transform: uppercase;
+    color: #999;
+    margin: 15px 0;
+}
+
+.names {
+    font-family: 'Pinyon Script', cursive;
+    font-size: 52px;
+    color: #2c2c2c;
+    margin: 20px 0 40px 0;
+}
+
+/* 4. BOXY DATE TEMPLATE */
+.date-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #eeeeee;
+    border-radius: 15px;
+    margin: 35px 0;
+    width: 100%;
+}
+
+.date-side {
+    flex: 1;
+    padding: 15px 5px;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    line-height: 1.7;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.date-center {
+    flex: 0.8;
     font-family: 'Playfair Display', serif;
-    font-size: 32px; 
-    font-weight: 600;
-    color: #5b7a5d; 
-    padding: 5px 10px;
-    border-left: 1px solid #e2e0db;
-    border-right: 1px solid #e2e0db;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(249,249,249,0.2));
+    font-size: 45px;
+    color: #5b7a5d; /* Dark Sage Green */
+    border-left: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
+    padding: 10px 0;
+    background-color: #fcfcfc;
+}
+
+/* 5. BOXY TIMER SECTION */
+.timer-container {
+    display: flex;
+    gap: 12px; /* Gap between the four boxes */
+    justify-content: center;
+    margin-top: 25px;
 }
 
 .timer-box {
-    background: rgba(255, 255, 255, 0.5); /* Semi-transparent boxes */
-    width: 45px; 
-    padding: 8px 0;
-    border-radius: 10px;
-    border: 1px solid #e0ddd7;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.05);
+    flex: 1;
+    background: #ffffff;
+    padding: 18px 5px;
+    border-radius: 18px;
+    /* Soft shadow + subtle inner stroke for depth */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04), inset 0 0 0 1px #f2f2f2;
+}
+
+.timer-box .number {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.timer-box .unit {
+    font-size: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #bbb;
+    margin-top: 6px;
+    display: block;
+}
+
+/* 6. VENUE & DETAILS */
+.venue-section {
+    margin-top: 40px;
+}
+
+.venue-name {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.venue-address {
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+/* 7. HIJRI DATE STYLE */
+.hijri {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin: 25px 0;
+    opacity: 0.7;
 }
