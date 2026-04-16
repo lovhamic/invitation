@@ -1,7 +1,7 @@
 /* GLOBAL STYLES */
 body {
     margin: 0;
-    padding: 80px 0; /* Extra padding to maximize background visibility */
+    padding: 80px 0; 
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -13,12 +13,13 @@ body {
     overflow-x: hidden;
 }
 
-/* THE INVITATION CARD - Decreased to 30% width */
+/* THE INVITATION CARD - Set to 30% width and 60% opacity */
 .invitation-card {
-    background: rgba(255, 255, 255, 0.6); /* 60% opacity as requested */
+    /* This line controls the 60% transparency */
+    background: rgba(255, 255, 255, 0.6); 
     backdrop-filter: blur(12px); 
-    width: 30%; /* Card now occupies 30% of the screen width */
-    min-width: 250px; /* Ensures card stays readable on very small phones */
+    width: 30%; 
+    min-width: 250px; 
     max-width: 300px;
     padding: 30px 10px;
     text-align: center;
@@ -26,33 +27,29 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 25px 50px rgba(0,0,0,0.15);
     
-    /* Animation settings */
+    /* Animation initial state */
     opacity: 0;
     transform: translateY(20px);
     transition: all 1.2s ease;
 }
 
-/* SCALING INTERNAL ELEMENTS FOR 30% WIDTH */
+/* SCALING INTERNAL ELEMENTS */
 .big-number {
-    font-size: 32px; /* Scaled down to fit smaller card */
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; 
+    font-weight: 600;
+    color: #5b7a5d; 
     padding: 5px 10px;
-}
-
-.side-text {
-    font-size: 8px; /* Reduced for better fit */
-    letter-spacing: 1.5px;
-    padding: 10px;
+    border-left: 1px solid #e2e0db;
+    border-right: 1px solid #e2e0db;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2), rgba(249,249,249,0.2));
 }
 
 .timer-box {
-    width: 45px; /* Scaled down to keep 4 boxes in one row */
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent boxes */
+    width: 45px; 
     padding: 8px 0;
-}
-
-.t-num {
-    font-size: 16px;
-}
-
-.t-unit {
-    font-size: 7px;
+    border-radius: 10px;
+    border: 1px solid #e0ddd7;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.02), 0 4px 8px rgba(0,0,0,0.05);
 }
