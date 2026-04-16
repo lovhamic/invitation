@@ -1,7 +1,7 @@
 /* GLOBAL STYLES */
 body {
     margin: 0;
-    padding: 60px 0; /* Extra padding to see more of the background a.jpg */
+    padding: 80px 0; /* Extra padding to maximize background visibility */
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -13,35 +13,46 @@ body {
     overflow-x: hidden;
 }
 
-/* THE INVITATION CARD - Decreased to 60% width */
+/* THE INVITATION CARD - Decreased to 30% width */
 .invitation-card {
-    /* Background set to 60% opacity (0.6) */
-    background: rgba(255, 255, 255, 0.6); 
+    background: rgba(255, 255, 255, 0.6); /* 60% opacity as requested */
     backdrop-filter: blur(12px); 
-    width: 60%; 
-    max-width: 320px; 
-    padding: 40px 15px;
+    width: 30%; /* Card now occupies 30% of the screen width */
+    min-width: 250px; /* Ensures card stays readable on very small phones */
+    max-width: 300px;
+    padding: 30px 10px;
     text-align: center;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.4);
     box-shadow: 0 25px 50px rgba(0,0,0,0.15);
     
-    /* Entrance animation settings */
+    /* Animation settings */
     opacity: 0;
     transform: translateY(20px);
     transition: all 1.2s ease;
 }
-/* Scaling internal elements to fit the 60% width card */
+
+/* SCALING INTERNAL ELEMENTS FOR 30% WIDTH */
 .big-number {
-    font-size: 42px; /* Adjusted from 54px to fit smaller card */
-    padding: 5px 15px;
+    font-size: 32px; /* Scaled down to fit smaller card */
+    padding: 5px 10px;
+}
+
+.side-text {
+    font-size: 8px; /* Reduced for better fit */
+    letter-spacing: 1.5px;
+    padding: 10px;
 }
 
 .timer-box {
-    width: 55px; /* Adjusted from 72px to ensure boxes fit in a row */
-    padding: 10px 0;
+    width: 45px; /* Scaled down to keep 4 boxes in one row */
+    padding: 8px 0;
 }
 
 .t-num {
-    font-size: 18px;
+    font-size: 16px;
+}
+
+.t-unit {
+    font-size: 7px;
 }
